@@ -1,13 +1,110 @@
-body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+* {
+  box-sizing: border-box;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+h1,h2,h3,h4,h5,h6{
+  margin: 0;
+}
+
+body {
+  font-family: sans-serif;
+  margin: 0;
+  background-color: #ecdddd;
+}
+
+.full-layout{
+  position: absolute;
+  /* width: 100vw; */
+  left: 0;
+  margin-bottom: 10px;
+}
+
+.main-layout{
+  max-width: 1300px; 
+  margin: 0 50px
+}
+
+.body-layout{
+  margin-top: 10px;
+}
+
+.flex-center{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.centered {
+  margin: 1rem auto;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-block-start: 0; 
+  /* maybe remove margin block */
+}
+
+.focused {
+  font-size: 3rem;
+  font-weight: bold;
+  color: white;
+}
+
+.no-list{
+  list-style-type: none;
+  padding: 0;
+}
+
+.thin-hr{
+  width: 1px;
+  height: 70px;
+  /* border-color: $light-text; */
+  border-color: rgb(189, 17, 17);
+  display: block; 
+  /* height: 1px; */
+  border: 0; 
+  border-top: 1px solid rgb(194, 21, 21);
+  margin: 10px 0;
+  padding: 0; 
+  
+}
+
+.flex{
+  display: flex;
+  justify-content: center;
+  align-content: center;
+}
+
+.button{
+  display: flex;
+  border-radius: 10px;
+  width: 113px;
+  height: 30px;
+  justify-content: center;
+  align-items: center;
+  background: #ffffff33;
+  color: white;
+  box-shadow: 0 0 20px 0px black;
+  border: 0;
+  /* border: 1px solid #c74343; */
+}
+
+.pointer{
+  cursor: pointer;
+}
+
+/* .btn {
+  text-decoration: none;
+  background-color: teal;
+  color: white;
+  border-radius: 4px;
+  padding: 0.75rem 1.5rem;
+  border: 1px solid teal;
+  cursor: pointer;
+} */
+
+.btn:hover,
+.btn:active {
+  background-color: #11acac;
+  border-color: #11acac;
 }

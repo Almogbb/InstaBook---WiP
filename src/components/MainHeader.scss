@@ -1,0 +1,31 @@
+.main-header{
+  height: 8vh;
+  background-color: lightcyan;
+  margin: auto;
+ 
+  .header-layout{
+    max-width: 1300px;
+    margin: 0 50px;
+    width: 100%;
+  }
+
+  .logo{
+    // width: 100px;
+    flex-grow: 1;
+  }
+
+  nav{
+   flex-grow: 3;
+  
+  }
+
+  .main-filter{
+    flex-grow: 1;
+  }
+
+  .search-input{
+    margin-left: 3px;
+    border-radius: 6px;
+    border: 2px solid #0000007d;
+  }
+}

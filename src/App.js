@@ -1,23 +1,45 @@
-import logo from './logo.svg';
-import './App.css';
+import { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { feedService } from './services/feed-service';
+
+import { feedSliceAction } from './store/feed-slice';
+
+import MainHeader from './components/MainHeader';
+import Feed from './views/Feed';
+
+import './index.css';
 
 function App() {
+  const dispatch = useDispatch();
+  const feedPosts = useSelector((state) => state.feed.posts);
+
+  // const test = {
+  //   post: 1,
+  //   user: 2,
+  // };
+
+  function testing() {
+    console.log(feedPosts);
+  }
+
+  async function getFromBack() {
+    const postsFromBack = await feedService.getPosts();
+    console.log(postsFromBack);
+  }
+
+  // useEffect(() => {
+  //   dispatch(feedSliceAction.getPosts(test));
+  // }, [dispatch]);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <MainHeader />
+      <main className='main-layout'>
+        <h1>Hello</h1>
+        <button onClick={testing}>check feed posts</button>
+        <button onClick={getFromBack}>check posts from back</button>
+        <Feed />
+      </main>
     </div>
   );
 }
