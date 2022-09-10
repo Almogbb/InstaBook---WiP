@@ -8,7 +8,14 @@ const initalUsersState = {
 const usersSlice = createSlice({
   name: 'users',
   initialState: initalUsersState,
-  reducers: {},
+  reducers: {
+    setLoggedInUser(state, action) {
+      state.loggedInUser = action.payload;
+    },
+    setUsers(state, action) {
+      state.users = action.payload;
+    },
+  },
 });
 
 export const usersSliceActions = usersSlice.actions;
