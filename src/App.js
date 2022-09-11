@@ -4,6 +4,7 @@ import { Route, Routes } from 'react-router-dom';
 
 import { feedService } from './services/feed-service';
 import { feedSliceAction } from './store/feed-slice';
+import { usersSliceActions } from './store/user-slice';
 import { userAction } from './store/user-actions';
 
 import MainHeader from './components/MainHeader';
@@ -31,6 +32,28 @@ function App() {
     console.log('s');
     dispatch(userAction.getUsers());
   }, [dispatch]);
+
+  useEffect(() => {
+    const token = localStorage.getItem('token');
+    const expiryDate = localStorage.getItem('expiryDate');
+    if (!token || !expiryDate) {
+      return;
+    }
+    // if (new Date(expiryDate) <= new Date()) {
+    // need to logout the loggedInUser - set in store
+    //   this.logoutHandler();
+    //   return;
+    // }
+    const user = JSON.parse(localStorage.getItem('user'));
+    const loggedUser = {
+      user,
+      token,
+    };
+    const remainingMilliseconds =
+      new Date(expiryDate).getTime() - new Date().getTime();
+    dispatch(usersSliceActions.setLoggedInUser(loggedUser));
+    // set function which auto logout after (remainingMilliseconds)
+  });
 
   return (
     <div>

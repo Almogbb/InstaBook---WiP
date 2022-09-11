@@ -1,16 +1,23 @@
 import { Fragment } from 'react';
 import { useSelector } from 'react-redux';
-import { NavLink } from 'react-router-dom';
+import { NavLink, useNavigate } from 'react-router-dom';
 
 import './MainHeader.scss';
 
 function MainHeader() {
+  const navigate = useNavigate();
   const loggedInUser = useSelector((state) => state.users.loggedInUser);
+
+  function moveToHomeRoute() {
+    navigate('/');
+  }
 
   return (
     <header className='main-header flex-center'>
       <div className='header-layout flex-center'>
-        <h1 className='logo'>InstaBook</h1>
+        <h1 className='logo' onClick={moveToHomeRoute}>
+          InstaBook
+        </h1>
 
         <nav>
           <ul>

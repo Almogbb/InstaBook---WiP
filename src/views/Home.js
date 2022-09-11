@@ -11,6 +11,14 @@ function Home() {
   async function guestUserHandler() {
     const guestUser = await userService.getGuestUser();
     console.log('guestUser', guestUser);
+    // set token in localStorage
+    localStorage.setItem('token', guestUser.token);
+    localStorage.setItem('user', JSON.stringify(guestUser.user));
+    const remainingMilliseconds = 60 * 60 * 1000;
+    const expiryDate = new Date(new Date().getTime() + remainingMilliseconds);
+    localStorage.setItem('expiryDate', expiryDate.toISOString());
+    console.log('user will logout automatically after', expiryDate);
+    // set function for auth logout after 1h
     dispatch(usersSliceActions.setLoggedInUser(guestUser));
     navigate('/feed');
   }
