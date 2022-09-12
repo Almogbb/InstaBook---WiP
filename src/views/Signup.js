@@ -3,7 +3,7 @@ import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 
 import { usersSliceActions } from '../store/user-slice';
-import { userAction } from '../store/user-actions';
+import { createUser } from '../store/user-actions';
 
 function Signup() {
   const dispatch = useDispatch();
@@ -22,8 +22,7 @@ function Signup() {
       createdAt: JSON.stringify(Date.now()),
     };
     console.log('user', user);
-    // dispatch(usersSliceActions.createUser(user));
-    await dispatch(userAction.createUser(user));
+    await dispatch(createUser(user));
     // navigate('/login');
     navigate('/feed');
   }

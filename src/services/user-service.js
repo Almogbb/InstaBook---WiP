@@ -25,7 +25,7 @@ async function createUser(user) {
 
 function _createGuestUser() {
   let guestUser = {
-    _id: 'g101',
+    // _id: 'g101',
     name: 'Guest' + Math.floor(Math.random() * 100),
     email: 'randomMail@gmail.com',
     posts: [

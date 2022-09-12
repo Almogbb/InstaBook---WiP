@@ -3,9 +3,9 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Route, Routes } from 'react-router-dom';
 
 import { feedService } from './services/feed-service';
-import { feedSliceAction } from './store/feed-slice';
+// import { feedSliceAction } from './store/feed-slice';
 import { usersSliceActions } from './store/user-slice';
-import { userAction } from './store/user-actions';
+import { getUsers } from './store/user-actions';
 
 import MainHeader from './components/MainHeader';
 import Feed from './views/Feed';
@@ -18,6 +18,7 @@ import './index.css';
 function App() {
   const dispatch = useDispatch();
   const feedPosts = useSelector((state) => state.feed.posts);
+  const isLoggedUser = useSelector((state) => state.users.loggedInUser);
 
   function testing() {
     console.log(feedPosts);
@@ -29,9 +30,8 @@ function App() {
   }
 
   useEffect(() => {
-    console.log('s');
-    dispatch(userAction.getUsers());
-  }, [dispatch]);
+    dispatch(getUsers());
+  }, [dispatch, isLoggedUser]);
 
   useEffect(() => {
     const token = localStorage.getItem('token');
@@ -46,14 +46,15 @@ function App() {
     // }
     const user = JSON.parse(localStorage.getItem('user'));
     const loggedUser = {
-      user,
+      name: user.name,
+      _id: user._id,
       token,
     };
     const remainingMilliseconds =
       new Date(expiryDate).getTime() - new Date().getTime();
     dispatch(usersSliceActions.setLoggedInUser(loggedUser));
     // set function which auto logout after (remainingMilliseconds)
-  });
+  }, [dispatch]);
 
   return (
     <div>
