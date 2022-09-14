@@ -8,10 +8,15 @@ async function getPosts() {
 }
 
 async function addPost(post) {
-  return httpService.post('feed/posts', post);
+  return httpService.post('feed/post', post);
+}
+
+async function removePostById(postId) {
+  return httpService.delete(`feed/post/${postId}`, postId);
 }
 
 export const feedService = {
   getPosts,
   addPost,
+  removePostById,
 };

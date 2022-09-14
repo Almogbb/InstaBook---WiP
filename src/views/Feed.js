@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { addPost } from '../store/feed-actions';
 import SinglePost from '../components/SinglePost';
 import { usersSliceActions } from '../store/user-slice';
+import { utilService } from '../services/util-service';
 // import { usersSliceActions } from '../store/user-slice';
 
 function Feed() {
@@ -12,7 +13,7 @@ function Feed() {
   const users = useSelector((state) => state.users.users);
   const posts = useSelector((state) => state.feed.posts);
 
-  const [isCreatePost, setCreatePost] = useState(false);
+  const [isCreatePost, setIsCreatePost] = useState(false);
 
   const titleInputRef = useRef();
   const contentInputRef = useRef();
@@ -25,24 +26,29 @@ function Feed() {
   }
 
   function openCreatePost() {
-    setCreatePost(true);
+    setIsCreatePost(true);
+  }
+
+  function closeCreatePost() {
+    setIsCreatePost(false);
   }
 
   async function createPost(e) {
     e.preventDefault();
+
     const postTitle = titleInputRef.current.value;
     const postContent = contentInputRef.current.value;
-    console.log('titleInputRef', postTitle);
-    console.log('contentInputRef', postContent);
+
     const post = {
+      _id: utilService.makeId(),
       title: postTitle,
       content: postContent,
       createdAt: Date.now(),
-      _id: loggedUser._id,
+      createdBy: loggedUser._id,
     };
     dispatch(addPost(post));
 
-    setCreatePost(false);
+    setIsCreatePost(false);
   }
 
   function onLogoutHandler() {}
@@ -69,11 +75,17 @@ function Feed() {
             ></textarea>
             <button>Post</button>
           </form>
+          <button onClick={closeCreatePost}>X</button>
         </div>
       )}
 
       {loggedUserPosts?.posts.map((post) => (
-        <SinglePost key={post._id} title={post.title} content={post.content} />
+        <SinglePost
+          key={post._id}
+          _id={post._id}
+          title={post.title}
+          content={post.content}
+        />
       ))}
     </section>
   );

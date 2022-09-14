@@ -4,7 +4,8 @@ import { usersSliceActions } from './user-slice';
 export function getUsers() {
   return async function getUsersThunk(dispatch) {
     const users = await userService.getUsers();
-    console.log('why this is working twice on load??');
+    // console.log('why this is working twice on load??');
+    console.log('users from getUsers', users);
     dispatch(usersSliceActions.setUsers(users));
   };
 }
@@ -15,6 +16,6 @@ export function createUser(user) {
     const savedUser = await userService.createUser(user);
     console.log('saved user after backend', savedUser);
     //after i get user - i dispatch
-    // dispatch(usersSlice.actions.setUsers(savedUser));
+    // dispatch(usersSliceActions.setUsers(savedUser));
   };
 }

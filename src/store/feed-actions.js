@@ -10,3 +10,11 @@ export function addPost(post) {
     dispatch(usersSliceActions.setLoggedUserPosts(post));
   };
 }
+
+export function removePost(postId) {
+  return async (dispatch) => {
+    const removedPost = await feedService.removePostById(postId);
+    console.log('post removed', removedPost);
+    dispatch(feedSliceAction.removePost(postId));
+  };
+}

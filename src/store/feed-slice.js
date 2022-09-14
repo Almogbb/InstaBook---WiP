@@ -17,6 +17,12 @@ const feedSlice = createSlice({
       console.log('action.payload', action.payload);
       state.posts.push(action.payload);
     },
+    removePost(state, action) {
+      const updatedPosts = state.posts.filter(
+        (post) => post._id !== action.payload.postId
+      );
+      state.posts = updatedPosts;
+    },
   },
 });
 
