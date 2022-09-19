@@ -8,9 +8,10 @@ import { usersSliceActions } from '../store/user-slice';
 import { utilService } from '../services/util-service';
 // import { usersSliceActions } from '../store/user-slice';
 
-import './Feed.scss';
 import PopUpModal from '../components/UI/PopUpModal';
 import Backdrop from '../components/UI/Backdrop';
+import CreateForm from '../components/CreateForm';
+import './Feed.scss';
 
 function Feed() {
   const dispatch = useDispatch();
@@ -71,29 +72,22 @@ function Feed() {
       {loggedUser && <p>{`Hello ${loggedUser.name}`}</p>}
       <button onClick={check}>check logged in user</button>
       <button onClick={openCreatePost}>Create Post</button>
-      {isCreatePost &&
-        ReactDOM.createPortal(
-          <Backdrop onClose={closeCreatePostHandler} />,
-          document.getElementById('backdrop-root')
-        )}
-      {isCreatePost &&
-        ReactDOM.createPortal(
-          <PopUpModal onClose={closeCreatePostHandler}>
-            <form className='create-post-form' onSubmit={createPost}>
-              <label htmlFor='title'>Title</label>
-              <input type='text' name='title' ref={titleInputRef} />
-              <textarea
-                name='content'
-                ref={contentInputRef}
-                cols='50'
-                rows='10'
-                placeholder='What is on your mind'
-              ></textarea>
-              <button className='create-post-btn'>Post</button>
-            </form>
-          </PopUpModal>,
-          document.getElementById('overlay-root')
-        )}
+      {isCreatePost && (
+        <CreateForm onClose={closeCreatePostHandler}>
+          <form className='create-post-form' onSubmit={createPost}>
+            <label htmlFor='title'>Title</label>
+            <input type='text' name='title' ref={titleInputRef} />
+            <textarea
+              name='content'
+              ref={contentInputRef}
+              cols='50'
+              rows='10'
+              placeholder='What is on your mind'
+            ></textarea>
+            <button className='create-post-btn'>Post</button>
+          </form>
+        </CreateForm>
+      )}
       <div className='posts-container'>
         {loggedUserPosts?.posts.map((post) => (
           <SinglePost

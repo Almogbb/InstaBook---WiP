@@ -4,6 +4,8 @@ import { useDispatch } from 'react-redux';
 import { removePost } from '../store/feed-actions';
 import { editPost } from '../store/feed-actions';
 import { feedSliceAction } from '../store/feed-slice';
+import CreateForm from './CreateForm';
+
 import './SinglePost.scss';
 
 function SinglePost(props) {
@@ -19,7 +21,7 @@ function SinglePost(props) {
     dispatch(removePost(postId));
   }
 
-  function openEditPost() {
+  function toggleEditPost() {
     if (isEditPost) {
       return setIsEditPost(false);
     }
@@ -46,7 +48,7 @@ function SinglePost(props) {
       <h2>{props.title}</h2>
       <p>{props.content}</p>
       {isEditPost && (
-        <div>
+        <CreateForm onClose={toggleEditPost}>
           <form onSubmit={editPostHandler}>
             <label htmlFor='title'>Title</label>
             <input
@@ -64,10 +66,10 @@ function SinglePost(props) {
             ></textarea>
             <button>Confirm</button>
           </form>
-        </div>
+        </CreateForm>
       )}
       <div className='flex'>
-        <button className='btn' onClick={openEditPost}>
+        <button className='btn' onClick={toggleEditPost}>
           edit
         </button>
         <button className='btn' onClick={deletePostHandler}>

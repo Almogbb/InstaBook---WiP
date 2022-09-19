@@ -8,15 +8,10 @@ function PopUpModal(props) {
     <Fragment>
       <div className='modal-container'>
         <div className='modal-content'>
-          <p onClick={props.onClose} className='close-btn'>
+          <p onClick={props.onClick} className='close-btn'>
             X
           </p>
           <div className='content'>{props.children}</div>
-          {/* <div className='btn-container'>
-            <button className='primary-btn'>
-              <span>{props.primaryBtn}</span>
-            </button>
-          </div> */}
         </div>
       </div>
     </Fragment>
