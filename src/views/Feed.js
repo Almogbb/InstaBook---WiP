@@ -66,8 +66,8 @@ function Feed() {
   const loggedUserPosts = users.find((user) => user._id === loggedUser._id);
 
   return (
-    <section>
-      <h1>feed</h1>
+    <section className='feed-container'>
+      <h1 className='feed-title'>My Feed</h1>
       {loggedUser && <p>{`Hello ${loggedUser.name}`}</p>}
       <button onClick={check}>check logged in user</button>
       <button onClick={openCreatePost}>Create Post</button>
@@ -94,15 +94,17 @@ function Feed() {
           </PopUpModal>,
           document.getElementById('overlay-root')
         )}
-      {loggedUserPosts?.posts.map((post) => (
-        <SinglePost
-          key={post._id}
-          _id={post._id}
-          title={post.title}
-          content={post.content}
-          createdByUserId={post.createdByUserId}
-        />
-      ))}
+      <div className='posts-container'>
+        {loggedUserPosts?.posts.map((post) => (
+          <SinglePost
+            key={post._id}
+            _id={post._id}
+            title={post.title}
+            content={post.content}
+            createdByUserId={post.createdByUserId}
+          />
+        ))}
+      </div>
     </section>
   );
 }

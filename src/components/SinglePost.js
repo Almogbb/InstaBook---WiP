@@ -66,9 +66,13 @@ function SinglePost(props) {
           </form>
         </div>
       )}
-      <div>
-        <button onClick={openEditPost}>edit</button>
-        <button onClick={deletePostHandler}>delete</button>
+      <div className='flex'>
+        <button className='btn' onClick={openEditPost}>
+          edit
+        </button>
+        <button className='btn' onClick={deletePostHandler}>
+          delete
+        </button>
       </div>
     </article>
   );

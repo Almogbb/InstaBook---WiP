@@ -29,10 +29,22 @@
   //   padding: 1rem 1rem;
   // }
 }
-
-.overlay{
-  background-color: rgba(0,0,0,.5);
-  position: fixed;
-  width: 100%;
-  height: 100%;
+.feed-container{
+  .feed-title{
+    text-align: center;
+    margin: 12px;
+  }
+  
+  .posts-container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
 }
+
+// .overlay{
+//   background-color: rgba(0,0,0,.5);
+//   position: fixed;
+//   width: 100%;
+//   height: 100%;
+// }
