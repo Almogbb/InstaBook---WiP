@@ -21,7 +21,7 @@ function MainHeader() {
 
         <nav>
           <ul>
-            {loggedInUser && <li>user name</li>}
+            {loggedInUser && <li>{loggedInUser.name}</li>}
             {!loggedInUser && (
               <Fragment>
                 <li>

@@ -12,7 +12,7 @@ const feedSlice = createSlice({
     getPosts(state, action) {
       state.posts = action.payload;
     },
-    updatePosts(state, action) {
+    addPost(state, action) {
       console.log('posts state', state.posts);
       console.log('action.payload', action.payload);
       state.posts.push(action.payload);
@@ -22,6 +22,15 @@ const feedSlice = createSlice({
         (post) => post._id !== action.payload.postId
       );
       state.posts = updatedPosts;
+    },
+    updatePost(state, action) {
+      const editedPost = action.payload;
+      console.log('editedPost', editedPost);
+      const postToUpdateIdx = state.posts.findIndex(
+        (post) => post._id === editedPost._id
+      );
+      state.posts.splice(postToUpdateIdx, 1, editedPost);
+      console.log('Post edited');
     },
   },
 });

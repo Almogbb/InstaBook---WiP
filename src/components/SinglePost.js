@@ -2,6 +2,7 @@ import { useState, useRef } from 'react';
 import { useDispatch } from 'react-redux';
 
 import { removePost } from '../store/feed-actions';
+import { editPost } from '../store/feed-actions';
 import { feedSliceAction } from '../store/feed-slice';
 import './SinglePost.scss';
 
@@ -14,9 +15,8 @@ function SinglePost(props) {
   const postId = props._id;
 
   function deletePostHandler() {
-    //remove post from users database(user post array) and posts database
+    //remove post from users database(user post array) and posts database - Done
     dispatch(removePost(postId));
-    //update posts array in feed-slice(store) and set posts and dependancy for getUsers
   }
 
   function openEditPost() {
@@ -26,10 +26,19 @@ function SinglePost(props) {
     setIsEditPost(true);
   }
 
-  function editPostHandler(e) {
+  async function editPostHandler(e) {
     e.preventDefault();
-    console.log('Post edited');
-    // dispatch(feedSliceAction.check(postId));
+
+    const postToEdit = {
+      _id: postId,
+      title: editTitleInputRef.current.value,
+      content: editContentInputRef.current.value,
+      updatedAt: Date.now(),
+    };
+
+    // console.log('postToEdit', postToEdit);
+    dispatch(editPost(postToEdit));
+    setIsEditPost(false);
   }
 
   return (

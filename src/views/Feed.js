@@ -1,11 +1,16 @@
-import { useState, useRef, useEffect } from 'react';
+import { useState, useRef, useEffect, Fragment } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import ReactDOM from 'react-dom';
 
 import { addPost } from '../store/feed-actions';
 import SinglePost from '../components/SinglePost';
 import { usersSliceActions } from '../store/user-slice';
 import { utilService } from '../services/util-service';
 // import { usersSliceActions } from '../store/user-slice';
+
+import './Feed.scss';
+import PopUpModal from '../components/UI/PopUpModal';
+import Backdrop from '../components/UI/Backdrop';
 
 function Feed() {
   const dispatch = useDispatch();
@@ -29,8 +34,13 @@ function Feed() {
     setIsCreatePost(true);
   }
 
-  function closeCreatePost() {
+  // function closeCreatePost() {
+  //   setIsCreatePost(false);
+  // }
+
+  function closeCreatePostHandler() {
     setIsCreatePost(false);
+    console.log(isCreatePost);
   }
 
   async function createPost(e) {
@@ -61,30 +71,36 @@ function Feed() {
       {loggedUser && <p>{`Hello ${loggedUser.name}`}</p>}
       <button onClick={check}>check logged in user</button>
       <button onClick={openCreatePost}>Create Post</button>
-      {isCreatePost && (
-        <div>
-          <form onSubmit={createPost}>
-            <label htmlFor='title'>Title</label>
-            <input type='text' name='title' ref={titleInputRef} />
-            <textarea
-              name='content'
-              ref={contentInputRef}
-              cols='50'
-              rows='10'
-              placeholder='What is on your mind'
-            ></textarea>
-            <button>Post</button>
-          </form>
-          <button onClick={closeCreatePost}>X</button>
-        </div>
-      )}
-
+      {isCreatePost &&
+        ReactDOM.createPortal(
+          <Backdrop onClose={closeCreatePostHandler} />,
+          document.getElementById('backdrop-root')
+        )}
+      {isCreatePost &&
+        ReactDOM.createPortal(
+          <PopUpModal onClose={closeCreatePostHandler}>
+            <form className='create-post-form' onSubmit={createPost}>
+              <label htmlFor='title'>Title</label>
+              <input type='text' name='title' ref={titleInputRef} />
+              <textarea
+                name='content'
+                ref={contentInputRef}
+                cols='50'
+                rows='10'
+                placeholder='What is on your mind'
+              ></textarea>
+              <button className='create-post-btn'>Post</button>
+            </form>
+          </PopUpModal>,
+          document.getElementById('overlay-root')
+        )}
       {loggedUserPosts?.posts.map((post) => (
         <SinglePost
           key={post._id}
           _id={post._id}
           title={post.title}
           content={post.content}
+          createdByUserId={post.createdByUserId}
         />
       ))}
     </section>
