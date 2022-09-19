@@ -2,7 +2,7 @@ import { Fragment } from 'react';
 
 import './PopUpModal.scss';
 
-function PopUpModal(props) {
+const PopUpModal = (props) => {
   // control open and close from main app i render this - use props to pass it
   return (
     <Fragment>
@@ -16,6 +16,6 @@ function PopUpModal(props) {
       </div>
     </Fragment>
   );
-}
+};
 
 export default PopUpModal;

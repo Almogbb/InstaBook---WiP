@@ -49,22 +49,29 @@ function SinglePost(props) {
       <p>{props.content}</p>
       {isEditPost && (
         <CreateForm onClose={toggleEditPost}>
-          <form onSubmit={editPostHandler}>
-            <label htmlFor='title'>Title</label>
-            <input
-              type='text'
-              name='title'
-              defaultValue={props.title}
-              ref={editTitleInputRef}
-            />
+          <form className='form-container flex-col' onSubmit={editPostHandler}>
+            <div className='flex'>
+              <input
+                placeholder='Enter your title here'
+                type='text'
+                name='title'
+                defaultValue={props.title}
+                ref={editTitleInputRef}
+                className='title-input-form'
+              />
+            </div>
+            <hr className='thin-hr' />
             <textarea
               name='content'
+              className='content-input-form'
               defaultValue={props.content}
               cols='50'
               rows='10'
               ref={editContentInputRef}
             ></textarea>
-            <button>Confirm</button>
+            <div>
+              <button>Confirm</button>
+            </div>
           </form>
         </CreateForm>
       )}

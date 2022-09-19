@@ -4,7 +4,7 @@ import ReactDOM from 'react-dom';
 import Backdrop from './UI/Backdrop';
 import PopUpModal from './UI/PopUpModal';
 
-function CreateForm(props) {
+const CreateForm = (props) => {
   return (
     <Fragment>
       {ReactDOM.createPortal(
@@ -17,6 +17,6 @@ function CreateForm(props) {
       )}
     </Fragment>
   );
-}
+};
 
 export default CreateForm;

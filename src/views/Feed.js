@@ -1,15 +1,11 @@
-import { useState, useRef, useEffect, Fragment } from 'react';
+import { useState, useRef } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import ReactDOM from 'react-dom';
 
 import { addPost } from '../store/feed-actions';
 import SinglePost from '../components/SinglePost';
 import { usersSliceActions } from '../store/user-slice';
 import { utilService } from '../services/util-service';
-// import { usersSliceActions } from '../store/user-slice';
 
-import PopUpModal from '../components/UI/PopUpModal';
-import Backdrop from '../components/UI/Backdrop';
 import CreateForm from '../components/CreateForm';
 import './Feed.scss';
 
@@ -75,8 +71,13 @@ function Feed() {
       {isCreatePost && (
         <CreateForm onClose={closeCreatePostHandler}>
           <form className='create-post-form' onSubmit={createPost}>
-            <label htmlFor='title'>Title</label>
-            <input type='text' name='title' ref={titleInputRef} />
+            {/* <label htmlFor='title'>Title</label> */}
+            <input
+              type='text'
+              name='title'
+              ref={titleInputRef}
+              placeholder='Enter your title here'
+            />
             <textarea
               name='content'
               ref={contentInputRef}
