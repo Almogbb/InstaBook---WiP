@@ -1,0 +1,168 @@
+* {
+  box-sizing: border-box;
+}
+
+h1,h2,h3,h4,h5,h6{
+  margin: 0;
+}
+
+body {
+  font-family: sans-serif;
+  margin: 0;
+  background-color: #ecdddd;
+}
+
+.full-layout{
+  position: absolute;
+  /* width: 100vw; */
+  left: 0;
+  margin-bottom: 10px;
+}
+
+.main-layout{
+  max-width: 1300px; 
+  margin: 0 50px;
+  height: 100vh
+}
+
+.body-layout{
+  margin-top: 10px;
+}
+
+.flex-center{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.centered {
+  margin: 1rem auto;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-block-start: 0; 
+  /* maybe remove margin block */
+}
+
+.focused {
+  font-size: 3rem;
+  font-weight: bold;
+  color: white;
+}
+
+.no-list{
+  list-style-type: none;
+  padding: 0;
+}
+
+.thin-hr{
+  width: 100%;
+  display: block; 
+  border-top: 1px solid rgb(231 228 228);
+  margin: 0;
+  
+}
+
+.flex{
+  display: flex;
+  justify-content: center;
+  align-content: center;
+}
+
+.flex-col{
+  display: flex;
+  flex-direction: column;
+  /* justify-content: center; */
+  align-content: center;
+}
+
+///////// create and edit post pop-up
+
+.form-container{
+  height: 300px;
+  /* width: 600px; */
+  border-radius: 10px;
+}
+
+.title-input-form{
+  height: 60px;
+  /* width: 500px; */
+  border: 0;
+  text-align: center;
+  font-size: 30px;
+  font-weight: bold;
+  border-radius: 10px;
+  padding-top: 4px;
+}
+
+.title-input-form:focus-visible{
+  outline: 0;
+  /* padding-top: 4px; */
+}
+
+.btn-container{
+  button{
+    cursor: pointer;
+    font-weight: bold;
+    border-radius: 8px;
+  }
+
+  button:hover{
+    background-color: rgb(113, 208, 161);
+  }
+}
+
+.content-input-form{
+  margin: 0px 20px;
+  padding: 20px 0;
+  border: 0;
+  resize: none;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-size: 20px;
+  font-weight: 600;
+}
+
+.content-input-form:focus-visible{
+  outline: 0;
+}
+
+////////////////////////////////////////// 
+
+.btn{
+  cursor: pointer;
+  display: flex;
+  border-radius: 10px;
+  min-width: 60px;
+  height: 30px;
+  justify-content: center;
+  align-items: center;
+  background: #ffffff33;
+  color: black;
+  font-weight: 600;
+  box-shadow: 0 0 5px 0px black;
+  border: 0;
+  margin: 0 10px;
+  padding: 0 20px;
+  /* border: 1px solid #c74343; */
+}
+
+.pointer{
+  cursor: pointer;
+}
+
+/* .btn {
+  text-decoration: none;
+  background-color: teal;
+  color: white;
+  border-radius: 4px;
+  padding: 0.75rem 1.5rem;
+  border: 1px solid teal;
+  cursor: pointer;
+} */
+
+.btn:hover,
+.btn:active {
+  background-color: #11acac;
+  border-color: #11acac;
+}

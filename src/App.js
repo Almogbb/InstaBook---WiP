@@ -13,7 +13,7 @@ import Home from './views/Home';
 import Login from './views/Login';
 import Signup from './views/Signup';
 
-import './index.css';
+import './index.scss';
 
 function App() {
   const dispatch = useDispatch();

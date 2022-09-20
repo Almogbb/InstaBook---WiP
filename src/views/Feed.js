@@ -70,22 +70,28 @@ function Feed() {
       <button onClick={openCreatePost}>Create Post</button>
       {isCreatePost && (
         <CreateForm onClose={closeCreatePostHandler}>
-          <form className='create-post-form' onSubmit={createPost}>
-            {/* <label htmlFor='title'>Title</label> */}
-            <input
-              type='text'
-              name='title'
-              ref={titleInputRef}
-              placeholder='Enter your title here'
-            />
+          <form className='form-container flex-col' onSubmit={createPost}>
+            <div className='flex'>
+              <input
+                type='text'
+                name='title'
+                ref={titleInputRef}
+                placeholder='Enter your title here'
+                className='title-input-form'
+              />
+            </div>
+            <hr className='thin-hr' />
             <textarea
               name='content'
               ref={contentInputRef}
               cols='50'
               rows='10'
               placeholder='What is on your mind'
+              className='content-input-form'
             ></textarea>
-            <button className='create-post-btn'>Post</button>
+            <div className='btn-container flex'>
+              <button className='create-post-btn'>Post</button>
+            </div>
           </form>
         </CreateForm>
       )}

@@ -69,7 +69,7 @@ function SinglePost(props) {
               rows='10'
               ref={editContentInputRef}
             ></textarea>
-            <div>
+            <div className='btn-container flex'>
               <button>Confirm</button>
             </div>
           </form>
