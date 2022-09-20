@@ -43,35 +43,6 @@ function App() {
   // need to find something instead of "isLoggedUser" to update users array after "continue with guest user"
   //, isLoggedUser
 
-  useEffect(() => {
-    const token = localStorage.getItem('token');
-    const expiryDate = localStorage.getItem('expiryDate');
-    if (!token || !expiryDate) {
-      return;
-    }
-    const user = JSON.parse(localStorage.getItem('user'));
-
-    // if (new Date(expiryDate) <= new Date()) {
-    // need to logout the loggedInUser - set in store
-    //   this.logoutHandler();
-    //   return;
-    // }
-    const loggedUser = {
-      name: user.name,
-      _id: user._id,
-      token,
-    };
-    const remainingMilliseconds =
-      new Date(expiryDate).getTime() - new Date().getTime();
-    dispatch(usersSliceActions.setLoggedInUser(loggedUser));
-    // set function which auto logout after (remainingMilliseconds)
-    // if (isLoggedUser) {
-    //   console.log('isLoggedUser is true', isLoggedUser);
-    //   navigate('/feed');
-    //   return;
-    // }
-  }, [dispatch]);
-
   return (
     <div>
       <MainHeader />

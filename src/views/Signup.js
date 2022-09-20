@@ -3,7 +3,7 @@ import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 
 import { usersSliceActions } from '../store/user-slice';
-import { createUser } from '../store/user-actions';
+import { signUp } from '../store/user-actions';
 
 function Signup() {
   const dispatch = useDispatch();
@@ -22,9 +22,8 @@ function Signup() {
       createdAt: JSON.stringify(Date.now()),
     };
     console.log('sending user to backend', user);
-    await dispatch(createUser(user));
+    await dispatch(signUp(user));
     navigate('/login');
-    // navigate('/feed');
   }
 
   return (

@@ -9,12 +9,19 @@ export function getUsers() {
   };
 }
 
-export function createUser(user) {
+export function signUp(user) {
   return async function createUserThunk(dispatch) {
     // console.log('user from thunk', user);
     const createdUser = await userService.createUser(user);
     console.log('saved user after backend', createdUser);
     //after i get user - i dispatch
     dispatch(usersSliceActions.addUser(createdUser));
+  };
+}
+
+export function login(user) {
+  return async (dispatch) => {
+    const loggedUser = await userService.login(user);
+    dispatch(usersSliceActions.setLoggedInUser(loggedUser));
   };
 }

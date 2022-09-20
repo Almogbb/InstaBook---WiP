@@ -1,17 +1,45 @@
-import { useRef } from 'react';
+import { useRef, useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
+
+import { login } from '../store/user-actions';
 
 function Login() {
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const loggedUser = useSelector((state) => state.users.loggedInUser);
+
   const emailInputRef = useRef();
   const passwordInputRef = useRef();
 
-  function onLoginHandler(e) {
+  async function onLoginHandler(e) {
     e.preventDefault();
-    // pass the email and password inputs to store
     const loginUser = {
       email: emailInputRef.current.value,
       password: passwordInputRef.current.value,
     };
+    console.log('loginUser', loginUser);
+    dispatch(login(loginUser));
+    navigate('/feed');
   }
+
+  useEffect(() => {
+    console.log('loggedUser', loggedUser);
+
+    localStorage.setItem('token', loggedUser.token);
+    const user = {
+      name: loggedUser.name,
+      _id: loggedUser._id,
+    };
+    localStorage.setItem('user', JSON.stringify(user));
+    //variables for setting logout
+    const remainingMilliseconds = 60 * 60 * 1000;
+    const expiryDate = new Date(new Date().getTime() + remainingMilliseconds);
+    localStorage.setItem('expiryDate', expiryDate.toISOString());
+    console.log('user will logout automatically after', expiryDate);
+    // set function for auth logout after 1h
+    //...
+  }, [loggedUser]);
 
   return (
     <section>

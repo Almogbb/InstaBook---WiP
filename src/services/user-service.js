@@ -2,8 +2,9 @@ import { httpService } from './http.service';
 
 export const userService = {
   getGuestUser,
-  createUser,
   getUsers,
+  createUser,
+  login,
 };
 
 async function getGuestUser() {
@@ -21,6 +22,11 @@ async function createUser(user) {
   const savedUser = await httpService.post('auth/signup', user);
   console.log('user service front', savedUser);
   return savedUser;
+}
+
+async function login(user) {
+  const loggedUser = await httpService.post('auth/login', user);
+  return loggedUser;
 }
 
 function _createGuestUser() {

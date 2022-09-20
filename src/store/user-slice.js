@@ -10,19 +10,21 @@ const usersSlice = createSlice({
   name: 'users',
   initialState: initalUsersState,
   reducers: {
-    setLoggedInUser(state, action) {
-      console.log('setting logged user', action);
-      state.loggedInUser = {
-        name: action.payload.name,
-        _id: action.payload._id,
-        token: action.payload.token,
-        posts: [],
-      };
-      // state.loggedInUser.push()
-    },
     setUsers(state, action) {
       state.users = action.payload;
       console.log('all users in the state', state.users);
+    },
+    setLoggedInUser(state, action) {
+      const loggedUser = action.payload;
+
+      state.loggedInUser = {
+        token: loggedUser.token,
+        name: loggedUser.loadedUser.name,
+        email: loggedUser.loadedUser.email,
+        _id: loggedUser.loadedUser._id,
+        createdAt: loggedUser.loadedUser.createdAt,
+        posts: [],
+      };
     },
     addUser(state, action) {
       const userToAdd = action.payload;

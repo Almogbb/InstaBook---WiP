@@ -1,4 +1,4 @@
-import { useState, useRef } from 'react';
+import { useState, useRef, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 import { addPost } from '../store/feed-actions';
@@ -63,6 +63,35 @@ function Feed() {
 
   function onLogoutHandler() {}
 
+  useEffect(() => {
+    const token = localStorage.getItem('token');
+    const expiryDate = localStorage.getItem('expiryDate');
+    if (!token || !expiryDate) {
+      return;
+    }
+    const user = JSON.parse(localStorage.getItem('user'));
+
+    // if (new Date(expiryDate) <= new Date()) {
+    // need to logout the loggedInUser - set in store
+    //   this.logoutHandler();
+    //   return;
+    // }
+    const loggedUser = {
+      name: user.name,
+      _id: user._id,
+      token,
+    };
+    const remainingMilliseconds =
+      new Date(expiryDate).getTime() - new Date().getTime();
+    // dispatch(usersSliceActions.setLoggedInUser(loggedUser));
+    // set function which auto logout after (remainingMilliseconds)
+    // if (isLoggedUser) {
+    //   console.log('isLoggedUser is true', isLoggedUser);
+    //   navigate('/feed');
+    //   return;
+    // }
+  }, [dispatch]);
+
   return (
     <section className='feed-container'>
       <h1 className='feed-title'>My Feed</h1>
@@ -97,7 +126,7 @@ function Feed() {
         </CreateForm>
       )}
       <div className='posts-container'>
-        {loggedUserPosts?.posts.map((post) => (
+        {loggedUserPosts?.posts?.map((post) => (
           <SinglePost
             key={post._id}
             _id={post._id}
@@ -106,7 +135,7 @@ function Feed() {
             createdByUserId={post.createdByUserId}
           />
         ))}
-        {!loggedUserPosts && (
+        {!loggedUser.posts.length && (
           <h1>No posts to show - need to show cmp for no posts</h1>
         )}
       </div>
