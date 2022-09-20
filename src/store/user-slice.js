@@ -18,9 +18,16 @@ const usersSlice = createSlice({
         token: action.payload.token,
         posts: [],
       };
+      // state.loggedInUser.push()
     },
     setUsers(state, action) {
       state.users = action.payload;
+      console.log('all users in the state', state.users);
+    },
+    addUser(state, action) {
+      const userToAdd = action.payload;
+      console.log('userToAdd', userToAdd);
+      state.users.push({ _id: userToAdd._id, name: userToAdd.name });
     },
     setLoggedUserPosts(state, action) {
       console.log('changing user state');

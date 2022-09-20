@@ -5,7 +5,6 @@ export function getUsers() {
   return async function getUsersThunk(dispatch) {
     const users = await userService.getUsers();
     // console.log('why this is working twice on load??');
-    console.log('users from getUsers', users);
     dispatch(usersSliceActions.setUsers(users));
   };
 }
@@ -13,9 +12,9 @@ export function getUsers() {
 export function createUser(user) {
   return async function createUserThunk(dispatch) {
     // console.log('user from thunk', user);
-    const savedUser = await userService.createUser(user);
-    console.log('saved user after backend', savedUser);
+    const createdUser = await userService.createUser(user);
+    console.log('saved user after backend', createdUser);
     //after i get user - i dispatch
-    // dispatch(usersSliceActions.setUsers(savedUser));
+    dispatch(usersSliceActions.addUser(createdUser));
   };
 }

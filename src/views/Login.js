@@ -7,6 +7,10 @@ function Login() {
   function onLoginHandler(e) {
     e.preventDefault();
     // pass the email and password inputs to store
+    const loginUser = {
+      email: emailInputRef.current.value,
+      password: passwordInputRef.current.value,
+    };
   }
 
   return (

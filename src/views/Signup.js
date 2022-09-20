@@ -21,10 +21,10 @@ function Signup() {
       password: passwordInputRef.current.value,
       createdAt: JSON.stringify(Date.now()),
     };
-    console.log('user', user);
+    console.log('sending user to backend', user);
     await dispatch(createUser(user));
-    // navigate('/login');
-    navigate('/feed');
+    navigate('/login');
+    // navigate('/feed');
   }
 
   return (

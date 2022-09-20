@@ -20,11 +20,14 @@ function Feed() {
   const titleInputRef = useRef();
   const contentInputRef = useRef();
 
+  const loggedUserPosts = users.find((user) => user._id === loggedUser._id);
+
   function check() {
     // console.log(loggedUser.name);
-    console.log('loggedUser from user-slice', loggedUser);
     console.log('users from user-slice', users);
-    console.log('posts from feed-slice', posts);
+    console.log('loggedUser from user-slice', loggedUser);
+    // console.log('posts from feed-slice', posts);
+    console.log('loggedUserPosts', loggedUserPosts);
   }
 
   function openCreatePost() {
@@ -59,8 +62,6 @@ function Feed() {
   }
 
   function onLogoutHandler() {}
-
-  const loggedUserPosts = users.find((user) => user._id === loggedUser._id);
 
   return (
     <section className='feed-container'>
@@ -105,6 +106,9 @@ function Feed() {
             createdByUserId={post.createdByUserId}
           />
         ))}
+        {!loggedUserPosts && (
+          <h1>No posts to show - need to show cmp for no posts</h1>
+        )}
       </div>
     </section>
   );
