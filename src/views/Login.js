@@ -20,25 +20,27 @@ function Login() {
     };
     console.log('loginUser', loginUser);
     dispatch(login(loginUser));
-    navigate('/feed');
   }
 
   useEffect(() => {
-    console.log('loggedUser', loggedUser);
+    if (loggedUser) {
+      console.log('loggedUser', loggedUser);
 
-    localStorage.setItem('token', loggedUser.token);
-    const user = {
-      name: loggedUser.name,
-      _id: loggedUser._id,
-    };
-    localStorage.setItem('user', JSON.stringify(user));
-    //variables for setting logout
-    const remainingMilliseconds = 60 * 60 * 1000;
-    const expiryDate = new Date(new Date().getTime() + remainingMilliseconds);
-    localStorage.setItem('expiryDate', expiryDate.toISOString());
-    console.log('user will logout automatically after', expiryDate);
-    // set function for auth logout after 1h
-    //...
+      localStorage.setItem('token', loggedUser.token);
+      const user = {
+        name: loggedUser.name,
+        _id: loggedUser._id,
+      };
+      localStorage.setItem('user', JSON.stringify(user));
+      //variables for setting logout
+      const remainingMilliseconds = 60 * 60 * 1000;
+      const expiryDate = new Date(new Date().getTime() + remainingMilliseconds);
+      localStorage.setItem('expiryDate', expiryDate.toISOString());
+      console.log('user will logout automatically after', expiryDate);
+      // set function for auth logout after 1h
+      //...
+      navigate('/feed');
+    }
   }, [loggedUser]);
 
   return (

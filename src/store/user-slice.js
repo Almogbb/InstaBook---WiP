@@ -19,10 +19,10 @@ const usersSlice = createSlice({
 
       state.loggedInUser = {
         token: loggedUser.token,
-        name: loggedUser.loadedUser.name,
-        email: loggedUser.loadedUser.email,
-        _id: loggedUser.loadedUser._id,
-        createdAt: loggedUser.loadedUser.createdAt,
+        name: loggedUser.loadedUser?.name || loggedUser.name,
+        email: loggedUser.loadedUser?.email || loggedUser.email,
+        _id: loggedUser.loadedUser?._id || loggedUser._id,
+        // createdAt: loggedUser.loadedUser.createdAt,
         posts: [],
       };
     },
