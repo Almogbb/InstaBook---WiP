@@ -20,7 +20,7 @@ function MainHeader() {
         </h1>
 
         <nav>
-          <ul>
+          <ul className='log-sign-container'>
             {loggedInUser && <li>{loggedInUser.name}</li>}
             {!loggedInUser && (
               <Fragment>

@@ -1,12 +1,52 @@
 .main-header{
   height: 8vh;
-  background-color: lightcyan;
+  background-color: #ffffff;
   margin: auto;
+  box-shadow: 0px 0px 6px 0px grey;
  
   .header-layout{
     max-width: 1300px;
     margin: 0 50px;
     width: 100%;
+
+    .log-sign-container{
+      display: flex;
+      list-style: none;
+      justify-content: end;
+      margin-right: 20px;
+
+      li{
+        cursor: pointer;
+        margin-right: 10px;
+        padding: 10px;
+        // background-color: red;
+        
+      }
+
+      // li span{
+      //   padding-bottom: 2px;
+      // }
+
+      li > a{
+        color: black;
+        border-radius: 10px;
+        font-weight: 600;
+        padding: 10px;
+        text-decoration: none;
+      }
+
+      li a:hover{
+        // padding: 10px;
+        background-color: lightblue;
+      }
+
+      li a:active,
+      li a.active{
+        text-decoration: underline;
+        text-decoration-thickness:2px ;
+        text-underline-offset: 4px;
+      }
+    }
   }
 
   .logo{

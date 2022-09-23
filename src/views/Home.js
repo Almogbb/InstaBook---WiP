@@ -4,6 +4,8 @@ import { useNavigate } from 'react-router-dom';
 import { usersSliceActions } from '../store/user-slice';
 import { userService } from '../services/user-service';
 
+import './Home.scss';
+
 function Home() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -37,7 +39,9 @@ function Home() {
   return (
     <section>
       <div>
-        <button onClick={guestUserHandler}>Continue as a guest</button>
+        <button className='guest-btn btn' onClick={guestUserHandler}>
+          Continue as a guest
+        </button>
       </div>
     </section>
   );
