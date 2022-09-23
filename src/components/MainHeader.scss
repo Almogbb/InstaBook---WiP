@@ -48,10 +48,13 @@
     }
   }
 
-  .logo{
-    // width: 100px;
+  .logo-container{
+
     flex-grow: 1;
-    cursor: pointer;
+    // width: 100px;
+    .logo{
+      cursor: pointer;
+    }
   }
 
   nav{
