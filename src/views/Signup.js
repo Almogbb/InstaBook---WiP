@@ -5,6 +5,8 @@ import { useNavigate } from 'react-router-dom';
 import { usersSliceActions } from '../store/user-slice';
 import { signUp } from '../store/user-actions';
 
+import './Signup.scss';
+
 function Signup() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -27,30 +29,36 @@ function Signup() {
   }
 
   return (
-    <section>
-      <form onSubmit={onSignupHandler}>
-        <label htmlFor='name'>name</label>
+    <section className='sign-up-container flex'>
+      <form className='sign-up-form' onSubmit={onSignupHandler}>
+        <h1 className='sign-up-title'>Sign-up</h1>
+        {/* <label htmlFor='name'>name</label> */}
         <input
+          className='sign-log-input'
           name='name'
           type='text'
           ref={nameInputRef}
           placeholder='Enter your name'
         />
-        <label htmlFor='email'>E-mail</label>
+        {/* <label htmlFor='email'>E-mail</label> */}
         <input
+          className='sign-log-input'
           name='email'
           type='email'
           ref={emailInputRef}
           placeholder='Enter your E-mail'
         />
-        <label htmlFor='password'>password</label>
+        {/* <label htmlFor='password'>password</label> */}
         <input
+          className='sign-log-input'
           name='password'
           type='password'
           ref={passwordInputRef}
           placeholder='Enter your password'
         />
-        <button>Sign-Up</button>
+        <div className='sign-up-btn-container btn-container flex'>
+          <button className='sign-btn'>Sign-Up</button>
+        </div>
       </form>
     </section>
   );
