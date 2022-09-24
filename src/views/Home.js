@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 
 import { usersSliceActions } from '../store/user-slice';
 import { userService } from '../services/user-service';
-import Signup from './Signup';
+import Login from './Login';
 
 import './Home.scss';
 
@@ -39,8 +39,8 @@ function Home() {
 
   return (
     <section>
+      <Login />
       <div className='guest-btn-container'>
-        <Signup />
         <button className='guest-btn btn' onClick={guestUserHandler}>
           Continue as a guest - need to put under sign-up
         </button>

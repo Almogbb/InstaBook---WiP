@@ -1,0 +1,73 @@
+
+////////////////////////////////////////////////////////////////////
+//same as signup - can change class names and make 1 scss for both
+
+.sign-up-container{
+  margin-top: 100px;
+  padding: 20px;
+	// background: red;
+	overflow: hidden;
+
+  .sign-up-form{
+    
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 350px;
+    height: 500px;
+    border-radius: 20px;
+    padding: 0 30px 30px 30px;
+    background: linear-gradient(0deg, rgba(91,198,226,1) 0%, rgba(63,148,207,1) 100%);
+    box-shadow: 0 0 10px 0;
+
+    .sign-up-title{
+      font-size: 2rem;
+      color: white;
+      text-align: center;
+      margin: 60px 0;
+      text-shadow: 0 0 6px black;
+      // text-decoration: underline;
+      // text-underline-offset: 4px;
+      // text-decoration-color: rgba(52, 49, 49, 0.9);
+    }
+
+    .sign-log-input{
+      border-radius: 5px;
+      margin-bottom: 20px;
+      padding: 10px;
+      width: 80%;
+      border: 0;
+      box-shadow: 0 0 5px 0;
+    }
+
+    .sign-up-btn-container{
+      width: 70%;
+      
+      .sign-btn{
+        border: 0;
+        margin-top: 80px;
+        width: 100%;
+        padding: 10px;
+        border-radius: 10px;
+        box-shadow: 0 0 8px 0;
+        font-size: 1rem;
+      }
+
+      .sign-btn:hover{
+        background-color: #c6cbd2bc;
+      }
+    }
+  }
+
+  .new-account-btn{
+    border: 0;
+    margin-top: 30px;
+    padding: 10px;
+    background-color: #42b72a;
+    box-shadow: 0 0 4px 0;
+  }
+
+  .new-account-btn:hover{
+    background-color: #36a420;
+  }
+}
