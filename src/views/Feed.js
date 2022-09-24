@@ -19,6 +19,7 @@ function Feed() {
 
   const titleInputRef = useRef();
   const contentInputRef = useRef();
+  const imageInputRef = useRef();
 
   const loggedUserPosts = users.find((user) => user._id === loggedUser._id);
 
@@ -48,6 +49,7 @@ function Feed() {
 
     const postTitle = titleInputRef.current.value;
     const postContent = contentInputRef.current.value;
+    // const attachImage = imageInputRef.click;
 
     const post = {
       _id: utilService.makeId(),
@@ -59,6 +61,23 @@ function Feed() {
     dispatch(addPost(post));
 
     setIsCreatePost(false);
+  }
+
+  async function uploadImg(ev) {
+    const UPLOAD_PRESET = 'cajan_22';
+    const CLOUD_NAME = 'cajan22a';
+    const UPLOAD_URL = `https://api.cloudinary.com/v1_1/${CLOUD_NAME}/image/upload`;
+    const FORM_DATA = new FormData();
+
+    FORM_DATA.append('file', ev.target.files[0]);
+    FORM_DATA.append('upload_preset', UPLOAD_PRESET);
+    return fetch(UPLOAD_URL, {
+      method: 'POST',
+      body: FORM_DATA,
+    })
+      .then((res) => res.json())
+      .then((res) => res)
+      .catch((err) => console.error(err));
   }
 
   function onLogoutHandler() {}
@@ -119,6 +138,10 @@ function Feed() {
               placeholder='What is on your mind'
               className='content-input-form'
             ></textarea>
+            <div>
+              <input type='file' ref={imageInputRef} hidden />
+              <button onClick={imageInputRef.click}>pick img</button>
+            </div>
             <div className='btn-container flex'>
               <button className='create-post-btn'>Post</button>
             </div>
