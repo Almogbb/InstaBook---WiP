@@ -16,7 +16,7 @@ function Feed() {
   const posts = useSelector((state) => state.feed.posts);
 
   const [isCreatePost, setIsCreatePost] = useState(false);
-  const [imgUploaded, setImgUploaded] = useState('');
+  // const [imgUploaded, setImgUploaded] = useState('');
 
   const titleInputRef = useRef();
   const contentInputRef = useRef();
@@ -57,9 +57,13 @@ function Feed() {
     console.log('attachedImage', attachedImage);
 
     if (attachedImage) {
-      uploadedImg = await uploadImg(attachedImgPos);
-      setImgUploaded(uploadedImg);
-      console.log('uploadedImg', uploadedImg);
+      try {
+        uploadedImg = await uploadImg(attachedImgPos);
+        // setImgUploaded(uploadedImg);
+        console.log('uploadedImg', uploadedImg);
+      } catch (err) {
+        console.log('cant upload img to Cloudinary', err);
+      }
     }
 
     const post = {
@@ -169,7 +173,7 @@ function Feed() {
             _id={post._id}
             title={post.title}
             content={post.content}
-            image={imgUploaded}
+            image={post.image}
             createdByUserId={post.createdByUserId}
           />
         ))}

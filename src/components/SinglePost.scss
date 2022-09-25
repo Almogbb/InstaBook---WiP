@@ -13,6 +13,18 @@
   p{
     overflow-wrap: break-word;
   }
+
+  .image-container{
+    // width: 80%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    img{
+      margin: 10px 0;
+      width: 80%;
+    }
+  }
 }
 
 

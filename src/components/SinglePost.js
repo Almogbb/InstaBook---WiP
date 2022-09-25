@@ -14,10 +14,8 @@ function SinglePost(props) {
   const editTitleInputRef = useRef();
   const editContentInputRef = useRef();
 
-  const uploadedImg = props.image;
   const postId = props._id;
 
-  console.log(';uploadedImg', uploadedImg);
   function deletePostHandler() {
     //remove post from users database(user post array) and posts database - Done
     dispatch(removePost(postId));
@@ -48,9 +46,11 @@ function SinglePost(props) {
   return (
     <article className='single-post-container'>
       <h2>{props.title}</h2>
-      <div>
-        <img src={uploadedImg} />
-      </div>
+      {props.image && (
+        <div className='image-container'>
+          <img src={props.image.url} alt='' />
+        </div>
+      )}
       <p>{props.content}</p>
       {isEditPost && (
         <CreateForm onClose={toggleEditPost}>
