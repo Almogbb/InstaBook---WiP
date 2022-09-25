@@ -16,6 +16,7 @@ function Feed() {
   const posts = useSelector((state) => state.feed.posts);
 
   const [isCreatePost, setIsCreatePost] = useState(false);
+  const [imgUploaded, setImgUploaded] = useState('');
 
   const titleInputRef = useRef();
   const contentInputRef = useRef();
@@ -47,14 +48,25 @@ function Feed() {
   async function createPost(e) {
     e.preventDefault();
 
+    let uploadedImg;
     const postTitle = titleInputRef.current.value;
     const postContent = contentInputRef.current.value;
-    // const attachImage = imageInputRef.click;
+    const attachedImgPos = imageInputRef.current.files[0];
+    const attachedImage = imageInputRef.current.value;
+
+    console.log('attachedImage', attachedImage);
+
+    if (attachedImage) {
+      uploadedImg = await uploadImg(attachedImgPos);
+      setImgUploaded(uploadedImg);
+      console.log('uploadedImg', uploadedImg);
+    }
 
     const post = {
       _id: utilService.makeId(),
       title: postTitle,
       content: postContent,
+      image: uploadedImg,
       createdAt: Date.now(),
       createdBy: loggedUser._id,
     };
@@ -63,13 +75,13 @@ function Feed() {
     setIsCreatePost(false);
   }
 
-  async function uploadImg(ev) {
+  async function uploadImg(filePos) {
     const UPLOAD_PRESET = 'cajan_22';
     const CLOUD_NAME = 'cajan22a';
     const UPLOAD_URL = `https://api.cloudinary.com/v1_1/${CLOUD_NAME}/image/upload`;
     const FORM_DATA = new FormData();
 
-    FORM_DATA.append('file', ev.target.files[0]);
+    FORM_DATA.append('file', filePos);
     FORM_DATA.append('upload_preset', UPLOAD_PRESET);
     return fetch(UPLOAD_URL, {
       method: 'POST',
@@ -139,8 +151,10 @@ function Feed() {
               className='content-input-form'
             ></textarea>
             <div>
-              <input type='file' ref={imageInputRef} hidden />
-              <button onClick={imageInputRef.click}>pick img</button>
+              <label>
+                <input type='file' ref={imageInputRef} />
+                {/* <p>Pick Img</p> */}
+              </label>
             </div>
             <div className='btn-container flex'>
               <button className='create-post-btn'>Post</button>
@@ -155,6 +169,7 @@ function Feed() {
             _id={post._id}
             title={post.title}
             content={post.content}
+            image={imgUploaded}
             createdByUserId={post.createdByUserId}
           />
         ))}

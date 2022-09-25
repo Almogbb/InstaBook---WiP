@@ -47,7 +47,7 @@ function Login() {
       //...
       navigate('/feed');
     }
-  }, [loggedUser]);
+  }, [loggedUser, navigate]);
 
   return (
     <section className='sign-up-container flex'>
