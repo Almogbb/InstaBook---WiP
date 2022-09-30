@@ -18,12 +18,12 @@ const usersSlice = createSlice({
       const loggedUser = action.payload;
 
       state.loggedInUser = {
-        token: loggedUser.token,
+        token: loggedUser.token || '',
         name: loggedUser.loadedUser?.name || loggedUser.name,
         email: loggedUser.loadedUser?.email || loggedUser.email,
         _id: loggedUser.loadedUser?._id || loggedUser._id,
         // createdAt: loggedUser.loadedUser.createdAt,
-        posts: [],
+        posts: loggedUser.posts || [],
       };
     },
     addUser(state, action) {

@@ -26,16 +26,17 @@ function Home() {
     // console.log('user will logout automatically after', expiryDate);
     // set function for auth logout after 1h
     //...
-    // dispatch(
-    //   usersSliceActions.setLoggedInUser({
-    //     name: guestUser.user.name,
-    //     _id: guestUser.user._id,
-    //     token: guestUser.token,
-    //   })
-    // );
+    dispatch(
+      usersSliceActions.setLoggedInUser({
+        name: guestUser.name,
+        email: guestUser.email,
+        _id: guestUser._id,
+        posts: guestUser.posts,
+        // token: guestUser.token,
+      })
+    );
 
-    // navigate(`/feed/:${guestUser.user._id}`);
-    // navigate(`/feed`);
+    navigate(`/feed`);
   }
 
   return (
@@ -43,7 +44,7 @@ function Home() {
       <Login />
       <div className='guest-btn-container'>
         <button className='guest-btn btn' onClick={guestUserHandler}>
-          Continue as a guest - need to put under sign-up
+          Continue as a guest
         </button>
       </div>
     </section>
