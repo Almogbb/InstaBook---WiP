@@ -12,9 +12,10 @@ function Home() {
   const navigate = useNavigate();
 
   async function guestUserHandler() {
-    console.log('go over this logix again');
-    // const guestUser = await userService.getGuestUser();
-    // console.log('guestUser', guestUser);
+    // navigate('/feed');
+    // console.log('go over this logix again');
+    const guestUser = await userService.getGuestUser();
+    console.log('guestUser', guestUser);
     // set token in localStorage
     // localStorage.setItem('token', guestUser.token);
     // localStorage.setItem('user', JSON.stringify(guestUser.user));
