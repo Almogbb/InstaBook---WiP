@@ -6,6 +6,7 @@ import { feedService } from './services/feed-service';
 // import { feedSliceAction } from './store/feed-slice';
 import { usersSliceActions } from './store/user-slice';
 import { getUsers } from './store/user-actions';
+// import {getPosts} from './store/'
 
 import MainHeader from './components/MainHeader';
 import Feed from './views/Feed';

@@ -30,16 +30,19 @@
       width: 80%;
     }
   }
-
-  .like-container{
+  .post-options-container{
     display: flex;
-    width: 120px;
-    padding: 3px 5px;
-    cursor: pointer;
+    justify-content: end;
+  
+    .like-container{
+      display: flex;
+      width: 120px;
+      padding: 3px 5px;
+      cursor: pointer;
 
-    
+      
 
-      .like-image-container{
+      .like-img-container{
         width: 24px;
         display: flex;
         justify-content: center;
@@ -53,7 +56,7 @@
           // size: 10%;
         }
       }
-      
+        
       .like-btn{
         border: 0;
         flex-grow: 2;
@@ -62,8 +65,8 @@
         margin: 0;
         font-weight: bold;
       }
-    
-    
+      
+    }
   }
 
   .like-container:hover{

@@ -1,8 +1,7 @@
 import { useState, useRef } from 'react';
 import { useDispatch } from 'react-redux';
 
-import { removePost } from '../store/feed-actions';
-import { editPost } from '../store/feed-actions';
+import { editPost, isLoveStatus, removePost } from '../store/feed-actions';
 import { feedSliceAction } from '../store/feed-slice';
 import CreateForm from './CreateForm';
 
@@ -13,6 +12,8 @@ import './SinglePost.scss';
 function SinglePost(props) {
   const [isEditPost, setIsEditPost] = useState(false);
   const [isLove, setIsLove] = useState(false);
+
+  // console.log(isLove);
 
   const dispatch = useDispatch();
   const editTitleInputRef = useRef();
@@ -33,13 +34,25 @@ function SinglePost(props) {
   }
 
   function toggleLove() {
-    if (!isLove) {
-      setIsLove(true);
-      console.log('isLove', isLove);
-      return;
+    if (isLove) {
+      setIsLove(false);
+      return false;
     }
-    setIsLove(false);
-    console.log('isLove', isLove);
+    setIsLove(true);
+    return true;
+  }
+
+  async function isLoveHandler() {
+    const isPostLove = toggleLove();
+    // console.log('isLove', isLove);
+    // console.log('isPostLove', isPostLove);
+    // dispatch for saving in db
+    const islovePost = {
+      _id: postId,
+      isLove: isPostLove,
+    };
+
+    dispatch(isLoveStatus(islovePost));
   }
 
   async function editPostHandler(e) {
@@ -49,6 +62,7 @@ function SinglePost(props) {
       _id: postId,
       title: editTitleInputRef.current.value,
       content: editContentInputRef.current.value,
+      isLove,
       updatedAt: Date.now(),
     };
 
@@ -57,8 +71,8 @@ function SinglePost(props) {
     setIsEditPost(false);
   }
 
-  const heartImg = isLove ? fullHeart : emptyHeart;
-  const loveIt = isLove ? 'like-btn red' : 'like-btn';
+  const heartImg = props.isLove ? fullHeart : emptyHeart;
+  const redColor = props.isLove ? 'like-btn red' : 'like-btn';
 
   return (
     <article className='single-post-container'>
@@ -108,13 +122,13 @@ function SinglePost(props) {
         </button>
       </div>
       <hr className='thin-hr' />
-      <div className='like-container' onClick={toggleLove}>
-        {/* <div className='fss'> */}
-        <div className='like-image-container'>
-          <img className='like-img' src={heartImg} />
+      <div className='post-options-container'>
+        <div className='like-container' onClick={isLoveHandler}>
+          <div className='like-img-container'>
+            <img className='like-img' src={heartImg} />
+          </div>
+          <p className={redColor}>Love it</p>
         </div>
-        <p className={loveIt}>Love it</p>
-        {/* </div> */}
       </div>
     </article>
   );

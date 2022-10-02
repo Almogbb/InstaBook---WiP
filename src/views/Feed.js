@@ -1,7 +1,7 @@
 import { useState, useRef, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
-import { addPost } from '../store/feed-actions';
+import { getPosts, addPost } from '../store/feed-actions';
 import SinglePost from '../components/SinglePost';
 import { usersSliceActions } from '../store/user-slice';
 import { utilService } from '../services/util-service';
@@ -12,8 +12,8 @@ import './Feed.scss';
 function Feed() {
   const dispatch = useDispatch();
   const loggedUser = useSelector((state) => state.users.loggedInUser);
+  const feedPosts = useSelector((state) => state.feed.posts);
   const users = useSelector((state) => state.users.users);
-  const posts = useSelector((state) => state.feed.posts);
 
   const [isCreatePost, setIsCreatePost] = useState(false);
   // const [imgUploaded, setImgUploaded] = useState('');
@@ -28,7 +28,7 @@ function Feed() {
     // console.log(loggedUser.name);
     console.log('users from user-slice', users);
     console.log('loggedUser from user-slice', loggedUser);
-    // console.log('posts from feed-slice', posts);
+    // console.log('posts from feed-slice', feedPosts);
     console.log('loggedUserPosts', loggedUserPosts);
   }
 
@@ -51,14 +51,14 @@ function Feed() {
     let uploadedImg;
     const postTitle = titleInputRef.current.value;
     const postContent = contentInputRef.current.value;
-    const attachedImgPos = imageInputRef.current.files[0];
+    const attachedImgContent = imageInputRef.current.files[0];
     const attachedImage = imageInputRef.current.value;
 
     console.log('attachedImage', attachedImage);
 
     if (attachedImage) {
       try {
-        uploadedImg = await uploadImg(attachedImgPos);
+        uploadedImg = await uploadImg(attachedImgContent);
         // setImgUploaded(uploadedImg);
         console.log('uploadedImg', uploadedImg);
       } catch (err) {
@@ -71,6 +71,7 @@ function Feed() {
       title: postTitle,
       content: postContent,
       image: uploadedImg,
+      isLove: false,
       createdAt: Date.now(),
       createdBy: loggedUser._id,
     };
@@ -127,6 +128,10 @@ function Feed() {
   //   // }
   // }, [dispatch]);
 
+  useEffect(() => {
+    dispatch(getPosts());
+  }, [dispatch]);
+
   return (
     <section className='feed-container'>
       <h1 className='feed-title'>My Feed</h1>
@@ -175,6 +180,7 @@ function Feed() {
             content={post.content}
             image={post.image}
             createdByUserId={post.createdByUserId}
+            isLove={post.isLove}
           />
         ))}
         {/* {!loggedUser.posts.length && (

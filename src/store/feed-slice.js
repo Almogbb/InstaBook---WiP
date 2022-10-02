@@ -29,8 +29,20 @@ const feedSlice = createSlice({
       const postToUpdateIdx = state.posts.findIndex(
         (post) => post._id === editedPost._id
       );
+      console.log('postToUpdateIdx', postToUpdateIdx);
       state.posts.splice(postToUpdateIdx, 1, editedPost);
       console.log('Post edited');
+    },
+    updateLoveStatus(state, action) {
+      const posts = [...state.posts];
+      console.log('posts', posts);
+      const postId = action.payload._id;
+      const postToUpdate = state.posts.find((post) => post._id === postId);
+
+      console.log('postToUpdate', postToUpdate);
+
+      // postToUpdate.isLove = action.payload.isLoveStatus
+      // console.log('postToUpdate',postToUpdate);
     },
   },
 });

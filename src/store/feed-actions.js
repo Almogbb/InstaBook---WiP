@@ -2,6 +2,13 @@ import { feedService } from '../services/feed-service';
 import { feedSliceAction } from './feed-slice';
 import { usersSliceActions } from './user-slice';
 
+export function getPosts() {
+  return async (dispatch) => {
+    const posts = await feedService.getPosts();
+    dispatch(feedSliceAction.getPosts(posts));
+  };
+}
+
 export function addPost(post) {
   return async (dispatch) => {
     const addedPost = await feedService.addPost(post);
@@ -28,5 +35,13 @@ export function editPost(post) {
     dispatch(feedSliceAction.updatePost(editedPost));
 
     //and set posts and dependancy for getUsers - ??
+  };
+}
+
+export function isLoveStatus(loveStatus) {
+  return async (dispatch) => {
+    const loveStatusPost = await feedService.loveStatus(loveStatus);
+    // console.log('loveStatusPost', loveStatusPost);
+    dispatch(feedSliceAction.updateLoveStatus(loveStatusPost));
   };
 }
