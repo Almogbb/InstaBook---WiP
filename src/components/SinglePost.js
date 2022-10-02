@@ -68,7 +68,7 @@ function SinglePost(props) {
           <img src={props.image.url} alt='' />
         </div>
       )}
-      <p>{props.content}</p>
+      <p className='post-content'>{props.content}</p>
       {isEditPost && (
         <CreateForm onClose={toggleEditPost}>
           <form className='form-container flex-col' onSubmit={editPostHandler}>
@@ -98,6 +98,7 @@ function SinglePost(props) {
           </form>
         </CreateForm>
       )}
+      <hr className='thin-hr' />
       <div className='flex'>
         <button className='btn' onClick={toggleEditPost}>
           edit
@@ -106,6 +107,7 @@ function SinglePost(props) {
           delete
         </button>
       </div>
+      <hr className='thin-hr' />
       <div className='like-container' onClick={toggleLove}>
         {/* <div className='fss'> */}
         <div className='like-image-container'>

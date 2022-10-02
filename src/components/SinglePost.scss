@@ -8,10 +8,14 @@
   border-radius: 8px;
 
   h2{
+    text-align: center;
     overflow-wrap: break-word;
   }
 
   p{
+    display: flex;
+    align-items: center;
+    min-height: 50px;
     overflow-wrap: break-word;
   }
 
@@ -64,6 +68,11 @@
 
   .like-container:hover{
     background-color: lightgray;
+  }
+
+  .thin-hr{
+    border-color: rgb(131 128 128 / 52%);
+    margin: 10px 0;
   }
 
   .red{
