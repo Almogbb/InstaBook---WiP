@@ -6,11 +6,15 @@ import { editPost } from '../store/feed-actions';
 import { feedSliceAction } from '../store/feed-slice';
 import CreateForm from './CreateForm';
 
+import emptyHeart from '../assets/Icons/empty-heart.png';
+import fullHeart from '../assets/Icons/full-heart.png';
 import './SinglePost.scss';
 
 function SinglePost(props) {
-  const dispatch = useDispatch();
   const [isEditPost, setIsEditPost] = useState(false);
+  const [isLove, setIsLove] = useState(false);
+
+  const dispatch = useDispatch();
   const editTitleInputRef = useRef();
   const editContentInputRef = useRef();
 
@@ -28,6 +32,16 @@ function SinglePost(props) {
     setIsEditPost(true);
   }
 
+  function toggleLove() {
+    if (!isLove) {
+      setIsLove(true);
+      console.log('isLove', isLove);
+      return;
+    }
+    setIsLove(false);
+    console.log('isLove', isLove);
+  }
+
   async function editPostHandler(e) {
     e.preventDefault();
 
@@ -42,6 +56,9 @@ function SinglePost(props) {
     dispatch(editPost(postToEdit));
     setIsEditPost(false);
   }
+
+  const heartImg = isLove ? fullHeart : emptyHeart;
+  const loveIt = isLove ? 'like-btn red' : 'like-btn';
 
   return (
     <article className='single-post-container'>
@@ -88,6 +105,14 @@ function SinglePost(props) {
         <button className='btn' onClick={deletePostHandler}>
           delete
         </button>
+      </div>
+      <div className='like-container' onClick={toggleLove}>
+        {/* <div className='fss'> */}
+        <div className='like-image-container'>
+          <img className='like-img' src={heartImg} />
+        </div>
+        <p className={loveIt}>Love it</p>
+        {/* </div> */}
       </div>
     </article>
   );

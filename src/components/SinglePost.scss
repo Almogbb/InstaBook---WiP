@@ -1,4 +1,5 @@
 .single-post-container{
+  position: relative;
   width: 60%;
   border: 1px solid black;
   min-height: 7rem;
@@ -24,6 +25,49 @@
       margin: 10px 0;
       width: 80%;
     }
+  }
+
+  .like-container{
+    display: flex;
+    width: 120px;
+    padding: 3px 5px;
+    cursor: pointer;
+
+    
+
+      .like-image-container{
+        width: 24px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        
+        flex-grow: 1;
+        .like-img{
+          width: 70%;
+          object-fit: contain;
+          // width: 20px;
+          // size: 10%;
+        }
+      }
+      
+      .like-btn{
+        border: 0;
+        flex-grow: 2;
+        display: flex;
+        align-items: center;
+        margin: 0;
+        font-weight: bold;
+      }
+    
+    
+  }
+
+  .like-container:hover{
+    background-color: lightgray;
+  }
+
+  .red{
+    color: red;
   }
 }
 
