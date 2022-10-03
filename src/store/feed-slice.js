@@ -1,4 +1,4 @@
-import { createSlice } from '@reduxjs/toolkit';
+import { createSlice, current } from '@reduxjs/toolkit';
 
 const initialFeedState = {
   // posts will be 2 posts less bacause of dummy guest user posts (need to insert to DB)
@@ -10,7 +10,7 @@ const feedSlice = createSlice({
   initialState: initialFeedState,
   reducers: {
     getPosts(state, action) {
-      state.posts = action.payload;
+      state.posts = [...action.payload];
     },
     addPost(state, action) {
       console.log('posts state', state.posts);
@@ -34,15 +34,12 @@ const feedSlice = createSlice({
       console.log('Post edited');
     },
     updateLoveStatus(state, action) {
-      const posts = [...state.posts];
-      console.log('posts', posts);
       const postId = action.payload._id;
       const postToUpdate = state.posts.find((post) => post._id === postId);
+      console.log('postToUpdate before', current(postToUpdate));
 
-      console.log('postToUpdate', postToUpdate);
-
-      // postToUpdate.isLove = action.payload.isLoveStatus
-      // console.log('postToUpdate',postToUpdate);
+      postToUpdate.isLove = action.payload.isLoveStatus;
+      console.log('postToUpdate after', current(postToUpdate));
     },
   },
 });
