@@ -136,8 +136,12 @@ function Feed() {
     <section className='feed-container'>
       <h1 className='feed-title'>My Feed</h1>
       {loggedUser && <p>{`Hello ${loggedUser.name}`}</p>}
-      <button onClick={check}>check logged in user</button>
-      <button onClick={openCreatePost}>Create Post</button>
+      <div className='flex'>
+        {/* <button onClick={check}>check logged in user</button> */}
+        <button className='create-post-btn btn' onClick={openCreatePost}>
+          Create Post
+        </button>
+      </div>
       {isCreatePost && (
         <CreateForm onClose={closeCreatePostHandler}>
           <form className='form-container flex-col' onSubmit={createPost}>
