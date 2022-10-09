@@ -3,6 +3,7 @@
   background-color: #ffffff;
   margin: auto;
   box-shadow: 0px 0px 6px 0px grey;
+  margin-bottom: 40px;
  
   .header-layout{
     max-width: 1300px;
@@ -53,7 +54,11 @@
     flex-grow: 1;
     // width: 100px;
     .logo{
+      font-size: 36px;
       cursor: pointer;
+      background: -webkit-linear-gradient(#5bc7e2, #3f93cf);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
     }
   }
 

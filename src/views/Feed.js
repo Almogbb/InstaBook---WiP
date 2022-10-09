@@ -134,8 +134,8 @@ function Feed() {
 
   return (
     <section className='feed-container'>
-      <h1 className='feed-title'>My Feed</h1>
-      {loggedUser && <p>{`Hello ${loggedUser.name}`}</p>}
+      {/* <h1 className='feed-title'>My Feed</h1> */}
+      {/* {loggedUser && <p>{`Hello ${loggedUser.name}`}</p>} */}
       <div className='flex'>
         {/* <button onClick={check}>check logged in user</button> */}
         <button className='create-post-btn btn' onClick={openCreatePost}>

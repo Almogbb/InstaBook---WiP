@@ -44,10 +44,14 @@
 
 
   .create-post-btn{
-    background-color: rgb(99, 211, 72);
+    background-color: rgb(154, 208, 220);
     width: 160px;
     height: 40px;
     font-size: 1.1rem;
+  }
+
+  .create-post-btn:hover{
+    background-color: rgba(110, 182, 198, 0.753);
   }
 }
 

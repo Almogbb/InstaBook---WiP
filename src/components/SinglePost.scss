@@ -1,18 +1,20 @@
 .single-post-container{
   position: relative;
   width: 60%;
-  border: 1px solid black;
+  // border: 1px solid black;
   min-height: 7rem;
-  margin-top: 1rem;
+  margin-top: 1.2rem;
   padding: 0.8rem;
   border-radius: 8px;
+  box-shadow: 0px 0px 7px 0px;
+  background-color: #fff;
 
   h2{
     text-align: center;
     overflow-wrap: break-word;
   }
 
-  p{
+  .post-content{
     display: flex;
     align-items: center;
     min-height: 50px;
@@ -37,16 +39,16 @@
     .like-container{
       display: flex;
       width: 120px;
-      padding: 3px 5px;
+      padding: 7px 5px;
       cursor: pointer;
-
-      
+      border-radius: 7px;
 
       .like-img-container{
         width: 24px;
         display: flex;
         justify-content: center;
         align-items: center;
+        margin-inline-end: 1px;
         
         flex-grow: 1;
         .like-img{
@@ -63,6 +65,7 @@
         display: flex;
         align-items: center;
         margin: 0;
+        margin-block-start: 1px;
         font-weight: bold;
       }
       
