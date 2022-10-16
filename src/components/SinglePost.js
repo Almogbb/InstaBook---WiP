@@ -77,12 +77,12 @@ function SinglePost(props) {
   return (
     <article className='single-post-container'>
       <h2>{props.title}</h2>
+      <p className='post-content'>{props.content}</p>
       {props.image && (
         <div className='image-container'>
           <img src={props.image.url} alt='' />
         </div>
       )}
-      <p className='post-content'>{props.content}</p>
       {isEditPost && (
         <CreateForm onClose={toggleEditPost}>
           <form className='form-container flex-col' onSubmit={editPostHandler}>
