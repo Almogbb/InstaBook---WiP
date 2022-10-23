@@ -78,6 +78,9 @@ function SinglePost(props) {
 
   return (
     <article className='single-post-container'>
+      <div className='created-by-container'>
+        <h3>{props.createdByUserName}</h3>
+      </div>
       <h2>{props.title}</h2>
       <p className='post-content'>{props.content}</p>
       {props.image && (

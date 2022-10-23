@@ -73,7 +73,8 @@ function Feed() {
       image: uploadedImg,
       isLove: false,
       createdAt: Date.now(),
-      createdBy: loggedUser._id,
+      createdByUserId: loggedUser._id,
+      createdByUserName: loggedUser.name,
     };
     dispatch(addPost(post));
 
@@ -184,6 +185,7 @@ function Feed() {
             content={post.content}
             image={post.image}
             createdByUserId={post.createdByUserId}
+            createdByUserName={post.createdByUserName}
             isLove={post.isLove}
           />
         ))}
