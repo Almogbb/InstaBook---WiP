@@ -14,7 +14,32 @@
     justify-content: end;
     align-items: center;
     height: 50px;
-    margin-inline-end: 15px;
+    // margin-inline-end: 15px;
+
+    .created-by-layout{
+      padding-inline-end: 8px;
+      p{
+        margin: 0;
+
+      }
+
+      h3{
+        display: flex;
+        justify-content: end;
+      }
+    }
+
+    .member-avatar{
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background: lightblue;
+      border-radius: 50%;
+      width: 40px;
+      height: 40px;
+      font-size: 10px;
+      
+    }
   }
 
   h2{

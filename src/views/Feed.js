@@ -186,6 +186,7 @@ function Feed() {
             image={post.image}
             createdByUserId={post.createdByUserId}
             createdByUserName={post.createdByUserName}
+            createdAt={post.createdAt}
             isLove={post.isLove}
           />
         ))}

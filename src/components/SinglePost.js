@@ -73,13 +73,53 @@ function SinglePost(props) {
     setIsEditPost(false);
   }
 
+  function displayDate() {
+    const now = new Date();
+    const createdAt = new Date(props.createdAt);
+    // console.log('post created at -', createdAt);
+    // console.log('current time - ', now);
+
+    let timePassed;
+    let minSinceCreated = Math.abs(now.getMinutes() - createdAt.getMinutes());
+    let hourSinceCreated = Math.abs(now.getHours() - createdAt.getHours());
+    let dateSinceCreated = Math.abs(now.getDate() - createdAt.getDate());
+
+    // console.log('minSinceCreated', minSinceCreated);
+    // console.log('hourSinceCreated', hourSinceCreated);
+    // console.log('dateSinceCreated', dateSinceCreated);
+    if (dateSinceCreated) {
+      timePassed = dateSinceCreated;
+      if (dateSinceCreated === 1) return `${timePassed} day ago`;
+      else return `${timePassed} days ago`;
+    }
+
+    if (hourSinceCreated) {
+      timePassed = hourSinceCreated;
+      if (hourSinceCreated === 1) return `${timePassed} hour ago`;
+      else return `${timePassed} hours ago`;
+    }
+
+    if (minSinceCreated) {
+      timePassed = minSinceCreated;
+      if (minSinceCreated === 1) return `${timePassed} minute ago`;
+      else return `${timePassed} minutes ago`;
+    } else {
+      return `now`;
+    }
+  }
+
+  const createdDate = displayDate();
   const heartImg = props.isLove ? fullHeart : emptyHeart;
   const redColor = props.isLove ? 'like-btn red' : 'like-btn';
 
   return (
     <article className='single-post-container'>
       <div className='created-by-container'>
-        <h3>{props.createdByUserName}</h3>
+        <div className='created-by-layout'>
+          <h3>{props.createdByUserName}</h3>
+          <p>{createdDate}</p>
+        </div>
+        <div className='member-avatar'></div>
       </div>
       <h2>{props.title}</h2>
       <p className='post-content'>{props.content}</p>
@@ -120,11 +160,11 @@ function SinglePost(props) {
       <hr className='thin-hr' />
       <div className='flex'>
         <button className='btn' onClick={toggleEditPost}>
-          <img className='edit-btn-icon' src={editIcon} />
+          <img className='edit-btn-icon' src={editIcon} alt='' />
           edit
         </button>
         <button className='btn' onClick={deletePostHandler}>
-          <img className='delete-btn-icon' src={deleteIcon} />
+          <img className='delete-btn-icon' src={deleteIcon} alt='' />
           delete
         </button>
       </div>
@@ -132,7 +172,7 @@ function SinglePost(props) {
       <div className='post-options-container'>
         <div className='like-container' onClick={isLoveHandler}>
           <div className='like-img-container'>
-            <img className='like-img' src={heartImg} />
+            <img className='like-img' src={heartImg} alt='' />
           </div>
           <p className={redColor}>Love it</p>
         </div>
