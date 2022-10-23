@@ -7,6 +7,8 @@ import CreateForm from './CreateForm';
 
 import emptyHeart from '../assets/Icons/empty-heart.png';
 import fullHeart from '../assets/Icons/full-heart.png';
+import editIcon from '../assets/Icons/edit-icon.png';
+import deleteIcon from '../assets/Icons/delete-icon.png';
 import './SinglePost.scss';
 
 function SinglePost(props) {
@@ -115,9 +117,11 @@ function SinglePost(props) {
       <hr className='thin-hr' />
       <div className='flex'>
         <button className='btn' onClick={toggleEditPost}>
+          <img className='edit-btn-icon' src={editIcon} />
           edit
         </button>
         <button className='btn' onClick={deletePostHandler}>
+          <img className='delete-btn-icon' src={deleteIcon} />
           delete
         </button>
       </div>
