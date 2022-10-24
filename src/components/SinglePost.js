@@ -4,9 +4,11 @@ import { useDispatch } from 'react-redux';
 import { editPost, isLoveStatus, removePost } from '../store/feed-actions';
 import { feedSliceAction } from '../store/feed-slice';
 import CreateForm from './CreateForm';
+import PostComments from './PostComments';
 
 import emptyHeart from '../assets/Icons/empty-heart.png';
 import fullHeart from '../assets/Icons/full-heart.png';
+import commentIcon from '../assets/Icons/comment.png';
 import editIcon from '../assets/Icons/edit-icon.png';
 import deleteIcon from '../assets/Icons/delete-icon.png';
 import './SinglePost.scss';
@@ -14,6 +16,7 @@ import './SinglePost.scss';
 function SinglePost(props) {
   const [isEditPost, setIsEditPost] = useState(false);
   const [isLove, setIsLove] = useState(false);
+  const [isCommentOpen, setIsCommentOpen] = useState(false);
 
   // console.log(isLove);
 
@@ -42,6 +45,15 @@ function SinglePost(props) {
     }
     setIsLove(true);
     return true;
+  }
+
+  function toggleComment() {
+    if (isCommentOpen) {
+      setIsCommentOpen(false);
+      return;
+    }
+    setIsCommentOpen(true);
+    return;
   }
 
   async function isLoveHandler() {
@@ -170,6 +182,12 @@ function SinglePost(props) {
       </div>
       <hr className='thin-hr' />
       <div className='post-options-container'>
+        <div onClick={toggleComment} className='comment-container'>
+          <div className='comment-img-container'>
+            <img className='comment-img' src={commentIcon} alt='' />
+          </div>
+          <p className='comment-btn'>Comment</p>
+        </div>
         <div className='like-container' onClick={isLoveHandler}>
           <div className='like-img-container'>
             <img className='like-img' src={heartImg} alt='' />
@@ -177,6 +195,7 @@ function SinglePost(props) {
           <p className={redColor}>Love it</p>
         </div>
       </div>
+      {isCommentOpen && <PostComments />}
     </article>
   );
 }

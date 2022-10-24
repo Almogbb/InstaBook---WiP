@@ -68,16 +68,16 @@
   }
   .post-options-container{
     display: flex;
-    justify-content: end;
+    justify-content: space-evenly;
   
-    .like-container{
+    .like-container, .comment-container{
       display: flex;
       width: 120px;
       padding: 7px 5px;
       cursor: pointer;
       border-radius: 7px;
 
-      .like-img-container{
+      .like-img-container, .comment-img-container{
         width: 24px;
         display: flex;
         justify-content: center;
@@ -87,13 +87,18 @@
         flex-grow: 1;
         .like-img{
           width: 70%;
-          object-fit: contain;
+          // object-fit: contain;
           // width: 20px;
           // size: 10%;
         }
+        
+        .comment-img{
+          width: 80%;
+          // padding-top: 2px;
+        }
       }
         
-      .like-btn{
+      .like-btn, .comment-btn{
         border: 0;
         flex-grow: 2;
         display: flex;
@@ -119,7 +124,7 @@
     right: 5px;
   }
 
-  .like-container:hover{
+  .like-container:hover, .comment-container:hover{
     background-color: lightgray;
   }
 
