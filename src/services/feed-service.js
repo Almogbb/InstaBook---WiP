@@ -23,10 +23,16 @@ async function removePostById(postId) {
   return httpService.delete(`feed/post/${postId}`, postId);
 }
 
+async function createComment(comment) {
+  // need to set different endpoint
+  return httpService.post(`feed/${comment.postId}/comment`, comment);
+}
+
 export const feedService = {
   getPosts,
   addPost,
   removePostById,
   editPost,
   loveStatus,
+  createComment,
 };

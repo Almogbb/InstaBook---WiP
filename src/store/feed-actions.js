@@ -45,3 +45,10 @@ export function isLoveStatus(loveStatus) {
     dispatch(feedSliceAction.updateLoveStatus(loveStatusPost));
   };
 }
+
+export function addComment(comment) {
+  return async (dispatch) => {
+    // console.log('asd', comment);
+    const addedComment = await feedService.createComment(comment);
+  };
+}

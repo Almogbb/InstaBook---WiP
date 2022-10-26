@@ -41,6 +41,7 @@ function _createGuestUser() {
         content: 'Finally i can smell the weekend',
         isLove: false,
         createdAt: 1648368189547,
+        createdByUserName: 'Jason',
       },
       {
         _id: 'p002',
@@ -48,6 +49,7 @@ function _createGuestUser() {
         content: 'Me and my gf at Greece',
         isLove: false,
         createdAt: 1648368158945,
+        createdByUserName: 'Bill',
       },
     ],
   };

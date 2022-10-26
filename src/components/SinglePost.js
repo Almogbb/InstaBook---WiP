@@ -4,7 +4,7 @@ import { useDispatch } from 'react-redux';
 import { editPost, isLoveStatus, removePost } from '../store/feed-actions';
 import { feedSliceAction } from '../store/feed-slice';
 import CreateForm from './CreateForm';
-import PostComments from './PostComments';
+import PostComment from './PostComment';
 
 import emptyHeart from '../assets/Icons/empty-heart.png';
 import fullHeart from '../assets/Icons/full-heart.png';
@@ -195,7 +195,7 @@ function SinglePost(props) {
           <p className={redColor}>Love it</p>
         </div>
       </div>
-      {isCommentOpen && <PostComments />}
+      {isCommentOpen && <PostComment postId={props._id} />}
     </article>
   );
 }

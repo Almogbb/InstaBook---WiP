@@ -47,6 +47,9 @@ function Home() {
           Continue as a guest
         </button>
       </div>
+      <div className='centered'>
+        for more functionality email: test@test.com password:123456
+      </div>
     </section>
   );
 }
