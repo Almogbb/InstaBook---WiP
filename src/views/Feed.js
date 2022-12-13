@@ -72,6 +72,7 @@ function Feed() {
       content: postContent,
       image: uploadedImg,
       isLove: false,
+      comments: [],
       createdAt: Date.now(),
       createdByUserId: loggedUser._id,
       createdByUserName: loggedUser.name,
@@ -184,6 +185,7 @@ function Feed() {
             title={post.title}
             content={post.content}
             image={post.image}
+            comments={post.comments}
             createdByUserId={post.createdByUserId}
             createdByUserName={post.createdByUserName}
             createdAt={post.createdAt}

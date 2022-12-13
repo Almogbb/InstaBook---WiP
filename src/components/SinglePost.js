@@ -58,9 +58,7 @@ function SinglePost(props) {
 
   async function isLoveHandler() {
     const isPostLove = toggleLove();
-    // console.log('isLove', isLove);
-    // console.log('isPostLove', isPostLove);
-    // dispatch for saving in db
+
     const islovePost = {
       _id: postId,
       isLove: isPostLove,
@@ -80,7 +78,6 @@ function SinglePost(props) {
       updatedAt: Date.now(),
     };
 
-    // console.log('postToEdit', postToEdit);
     dispatch(editPost(postToEdit));
     setIsEditPost(false);
   }
@@ -88,17 +85,12 @@ function SinglePost(props) {
   function displayDate() {
     const now = new Date();
     const createdAt = new Date(props.createdAt);
-    // console.log('post created at -', createdAt);
-    // console.log('current time - ', now);
 
     let timePassed;
     let minSinceCreated = Math.abs(now.getMinutes() - createdAt.getMinutes());
     let hourSinceCreated = Math.abs(now.getHours() - createdAt.getHours());
     let dateSinceCreated = Math.abs(now.getDate() - createdAt.getDate());
 
-    // console.log('minSinceCreated', minSinceCreated);
-    // console.log('hourSinceCreated', hourSinceCreated);
-    // console.log('dateSinceCreated', dateSinceCreated);
     if (dateSinceCreated) {
       timePassed = dateSinceCreated;
       if (dateSinceCreated === 1) return `${timePassed} day ago`;
@@ -195,6 +187,7 @@ function SinglePost(props) {
           <p className={redColor}>Love it</p>
         </div>
       </div>
+
       {isCommentOpen && <PostComment postId={props._id} />}
     </article>
   );

@@ -3,6 +3,8 @@ import { useDispatch, useSelector } from 'react-redux';
 
 import { addComment } from '../store/feed-actions';
 
+import { utilService } from '../services/util-service';
+
 function PostComment(props) {
   const loggedUser = useSelector((state) => state.users.loggedInUser);
   const dispatch = useDispatch();
@@ -18,10 +20,12 @@ function PostComment(props) {
         postId: props.postId,
         responderName: loggedUser.name,
         responderId: loggedUser._id,
-        comment: commentInput,
+        commentContent: commentInput,
+        _commentId: utilService.makeId(),
       };
       dispatch(addComment(commentToAdd));
       commentInputRef.current.value = '';
+      // close the comment tab - need to pass isCommentOpen from SinglePost
     } catch (err) {
       console.log(err);
     }
@@ -40,6 +44,9 @@ function PostComment(props) {
             ref={commentInputRef}
             placeholder='Write your comment...'
           />
+          <div>
+            <button>Send</button>
+          </div>
         </form>
       </div>
     </div>

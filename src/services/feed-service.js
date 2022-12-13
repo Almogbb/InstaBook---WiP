@@ -25,7 +25,7 @@ async function removePostById(postId) {
 
 async function createComment(comment) {
   // need to set different endpoint
-  return httpService.post(`feed/${comment.postId}/comment`, comment);
+  return httpService.post(`feed/${comment.postId}/comments`, comment);
 }
 
 export const feedService = {
